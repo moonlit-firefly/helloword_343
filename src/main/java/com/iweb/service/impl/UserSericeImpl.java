@@ -30,4 +30,9 @@ public class UserSericeImpl implements UserService {
     public List<User> list() {
         return userDAO.list();
     }
+
+    @Override
+    public void add(User user) {
+        userDAO.add(user);
+    }
 }

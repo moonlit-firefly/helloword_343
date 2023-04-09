@@ -22,7 +22,7 @@
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                 <h4>
                     欢迎!
-                </h4>尊贵的用户:${user.name}
+                </h4>尊贵的管理员:${user.name}
                 <a href="/admin_user_exitLogin" class="alert-link">退出登录</a>
                 <a href="/admin_user_list">
                     <button type="button" class="btn btn-default btn-primary">用户管理</button>

@@ -23,7 +23,7 @@
                 <a href="#">登录</a>
             </li>
             <li>
-                <a href="/p1.html">用户管理</a>
+                <a href="/fore_mainPage_pageShow">主界面</a>
             </li>
             <li class="">
                 <a href="/p3.html">订单管理</a>

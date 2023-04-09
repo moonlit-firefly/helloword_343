@@ -1,6 +1,8 @@
 package com.iweb.filter;
 
 import com.iweb.entity.User;
+import com.iweb.service.CategoryService;
+import com.iweb.service.impl.CategoryServiceImpl;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -27,7 +29,7 @@ public class C_AutherFilter implements Filter {
         //获取请求uri
         String uri=req.getRequestURI();
         //判断请求访问的是否是登陆界面或者是提交登录信息的请求
-        //如果是这两个请求，必须直接放行  否则会进入死循环
+        //如果是这请求，直接放行  否则会进入死循环
         if(uri.endsWith("login.jsp")||uri.endsWith("login")
                 ||uri.endsWith("gif")||uri.endsWith("jpg")
                 ||uri.endsWith("webp")||uri.endsWith("css")
@@ -35,13 +37,19 @@ public class C_AutherFilter implements Filter {
             chain.doFilter(req,resp);
             return;
         }
+        //放行关于前台的部分
+        if(uri.contains("fore")){
+            chain.doFilter(req,resp);
+            return;
+        }
         //我们这里省略cookie的操作  我们假设登录成功  就直接把用户面馆存放到当前session
         //这里过滤器就应该从session中获取用户 判断是否为空
         User user=(User) req.getSession().getAttribute("user");
         if(null==user){
-            resp.sendRedirect("page/admin/login/login.jsp");
+            resp.sendRedirect("/page/admin/login/login.jsp");
             return;
         }
+
         chain.doFilter(req,resp);
     }
 

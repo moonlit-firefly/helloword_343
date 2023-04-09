@@ -12,4 +12,5 @@ public interface UserService {
     boolean login(User user);
     List<User> list();
 
+    void add(User user);
 }

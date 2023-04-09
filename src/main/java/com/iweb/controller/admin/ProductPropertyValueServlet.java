@@ -34,7 +34,6 @@ public class ProductPropertyValueServlet extends BaseBackServlet {
         if (propertyValue == null) {
             return "%error";
         } else {
-//            req.setAttribute("value", value);
             return "%success";
         }
     }

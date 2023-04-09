@@ -45,6 +45,18 @@ public class D_BackServletFilter implements Filter {
             req.getRequestDispatcher("/"+servletPath).forward(req,resp);
             return;
         }
+        //判断uri是否是以/fore_开头的
+        if(uri.startsWith("/fore_")){
+            //取出后续要访问的servlet的匹配路径
+            String servletPath=StringUtils.substringBetween(uri,"_","_")+"Servlet";
+            //取出后续想要访问的方法名称
+            String method=StringUtils.substringAfterLast(uri,"_");
+            //将方法名称存入到请求中
+            req.setAttribute("method",method);
+            //通过转发跳转到指定Servlet
+            req.getRequestDispatcher("/"+servletPath).forward(req,resp);
+            return;
+        }
         //如果不是我们指定的 则请求放行
         chain.doFilter(req,resp);
     }
