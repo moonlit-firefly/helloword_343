@@ -42,10 +42,16 @@ public class C_AutherFilter implements Filter {
             chain.doFilter(req,resp);
             return;
         }
+
+        User buyUser=(User) req.getSession().getAttribute("buyUser");
+        if(null!=buyUser){
+            chain.doFilter(req,resp);
+            return;
+        }
         //我们这里省略cookie的操作  我们假设登录成功  就直接把用户面馆存放到当前session
         //这里过滤器就应该从session中获取用户 判断是否为空
         User user=(User) req.getSession().getAttribute("user");
-        if(null==user){
+        if(null==user&&null==buyUser){
             resp.sendRedirect("/page/admin/login/login.jsp");
             return;
         }

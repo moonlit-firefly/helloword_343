@@ -34,8 +34,8 @@ public class E_ForeServletFilter implements Filter {
         //获取请求uri
         String uri=req.getRequestURI();
         //这里过滤器就应该从session中获取用户 判断是否为空
-        User user=(User) req.getSession().getAttribute("user");
-        if(null!=user){
+        User buyUser=(User) req.getSession().getAttribute("buyUser");
+        if(null!=buyUser){
             flag=true;
         }else {
             flag=false;

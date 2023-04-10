@@ -84,7 +84,7 @@ public class CategoryDAOImpl implements EntityDAO<Category> {
                 category=new Category();
                 category.setId(id);
                 category.setName(rs.getString("name"));
-                //category.setProducts(pdi.list(category));
+                category.setProducts(pdi.list(category));
             }
         }catch (Exception e){
             System.out.println("CategoryDAOImpl.get("+id+")出现异常");

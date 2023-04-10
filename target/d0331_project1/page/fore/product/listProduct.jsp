@@ -18,7 +18,7 @@
 <body>
 <div class="container">
     <div class="row clearfix">
-        <div class="col-md-12 column">
+        <div class="col-md-4 column">
             <div class="alert alert-success alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                 <h4>
@@ -26,6 +26,23 @@
                 </h4>尊贵的用户:${user.name}
                 <a href="fore_user1_exitLogin" class="alert-link">退出登录</a>
             </div>
+        </div>
+        <div class="col-md-1 column">
+            <a href="/fore_productView_listByPrice?id=${ps.get(0).category.id}">
+                <button type="button">价格排序</button>
+            </a>
+        </div>
+        <div class="col-md-1 column">
+            <a href="/fore_productView_listBySale?id=${ps.get(0).category.id}">
+                <button type="button">销量排序</button>
+            </a>
+        </div>
+        <div class="col-md-2 column">
+            <a href="/fore_productView_listByReviews?id=${ps.get(0).category.id}">
+                <button type="button">评价数排序</button>
+            </a>
+        </div>
+        <div class="col-md-4 column">
         </div>
     </div>
     <div class="row clearfix">
@@ -39,6 +56,8 @@
                     <th>商品原价</th>
                     <th>商品优惠价</th>
                     <th>库存</th>
+                    <th>销量</th>
+                    <th>评价数量</th>
                     <th>加入购物车</th>
                 </tr>
                 </thead>
@@ -55,6 +74,8 @@
                         <td><p>${p.originalPrice}</p></td>
                         <td><p>${p.promotePrice}</p></td>
                         <td><p>${p.stock}</p></td>
+                        <td><p>${p.saleCount}</p></td>
+                        <td><p>${p.reviewCount}</p></td>
                         <td>
                             <button type="button" class="btn btn-default btn-primary order-add"
                                     style="background-color:#dc143c"

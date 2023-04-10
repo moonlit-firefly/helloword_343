@@ -17,14 +17,14 @@ import java.util.List;
 public class UserServlet extends BaseForeServlet {
     public String login(HttpServletRequest request, HttpServletResponse response) throws IOException {
         //接收参数并封装
-        User user=new User();
-        user.setName(request.getParameter("username"));
-        user.setPassword(request.getParameter("password"));
+        User buyUser=new User();
+        buyUser.setName(request.getParameter("username"));
+        buyUser.setPassword(request.getParameter("password"));
         //调用service进行处理  loginService来自父类属性
-        boolean isLogin=loginService.login(user);
+        boolean isLogin=loginService.login(buyUser);
         if(isLogin){
             //如果登录成功  将用户信息存入session用于后续校验
-            request.getSession().setAttribute("user",user);
+            request.getSession().setAttribute("buyUser",buyUser);
             return "@/fore_mainPage_pageShow";
         }else{
             //如果登录失败

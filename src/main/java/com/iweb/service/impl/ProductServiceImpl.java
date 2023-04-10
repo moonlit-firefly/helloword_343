@@ -1,6 +1,7 @@
 package com.iweb.service.impl;
 
 import com.iweb.DAO.impl.ProductDAOImpl;
+import com.iweb.entity.Category;
 import com.iweb.entity.Product;
 import com.iweb.service.ProductService;
 import com.iweb.util.Page;
@@ -16,6 +17,11 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> list(int cid) {
         return productDAO.list(cid);
+    }
+
+    @Override
+    public List<Product> list(Category category) {
+        return productDAO.list(category);
     }
 
     @Override

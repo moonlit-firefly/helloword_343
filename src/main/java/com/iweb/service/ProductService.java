@@ -17,6 +17,12 @@ public interface ProductService {
      */
     List<Product> list(int cid);
 
+    /**同种类产品集合
+     * @param category 种类
+     * @return
+     */
+    List<Product> list(Category category);
+
     /**模糊查询产品集合
      * @param value 模糊查询值
      * @return
