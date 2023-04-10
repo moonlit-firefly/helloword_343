@@ -24,7 +24,7 @@
                 <h4>
                     欢迎!
                 </h4>尊贵的用户:${user.name}
-                <a href="/admin_user_exitLogin" class="alert-link">退出登录</a>
+                <a href="fore_user1_exitLogin" class="alert-link">退出登录</a>
             </div>
         </div>
     </div>

@@ -31,6 +31,7 @@
             align-items: center;
             padding-left: 25px;
             background-color: rgb(240, 240, 240);
+            z-index: 1;
         }
 
         .info {
@@ -62,7 +63,8 @@
                     </a>
                 </c:if>
                 <c:if test="${user.name !=null}">
-                    欢迎您！${user.name}。
+                    欢迎您！<a href="/page/fore/user/editUser.jsp">${user.name}</a> 。
+                    &nbsp;&nbsp;<a href="/fore_user1_exitLogin">退出登录</a>
                 </c:if>
             </h3>
         </div>

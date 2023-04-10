@@ -84,7 +84,7 @@ public class ProductImageDAOImpl implements EntityDAO<ProductImage> {
                 productImage=new ProductImage();
                 productImage.setId(id);
                 productImage.setUrl(rs.getString("url"));
-               // productImage.setProduct(pdi.get(rs.getInt("pid")));
+                productImage.setProduct(pdi.get(rs.getInt("pid")));
             }
         }catch (Exception e){
             System.out.println("ProductImageDAOImpl.get("+id+")出现异常");
@@ -156,7 +156,7 @@ public class ProductImageDAOImpl implements EntityDAO<ProductImage> {
                 ProductImage productImage=new ProductImage();
                 productImage.setId(rs.getInt("id"));
                 productImage.setUrl(rs.getString("url"));
-//                productImage.setProduct(pdi.get(rs.getInt("pid")));
+                productImage.setProduct(pdi.get(rs.getInt("pid")));
                 productImages.add(productImage);
             }
         }catch (Exception e){

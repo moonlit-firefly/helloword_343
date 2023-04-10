@@ -19,6 +19,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<Product> list(String value) {
+        return productDAO.list(value);
+    }
+
+    @Override
     public List<Product> list(Page page) {
         int total = productDAO.list().size();
         page.calculateLast(total);

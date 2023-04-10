@@ -35,4 +35,9 @@ public class UserSericeImpl implements UserService {
     public void add(User user) {
         userDAO.add(user);
     }
+
+    @Override
+    public void update(User user) {
+        userDAO.update(user);
+    }
 }

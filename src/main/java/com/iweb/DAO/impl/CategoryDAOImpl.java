@@ -2,6 +2,7 @@ package com.iweb.DAO.impl;
 
 import com.iweb.DAO.EntityDAO;
 import com.iweb.entity.Category;
+import com.iweb.entity.Product;
 import com.iweb.util.JDBCUtil;
 
 import java.sql.Connection;
@@ -112,8 +113,8 @@ public class CategoryDAOImpl implements EntityDAO<Category> {
                 category.setId(rs.getInt("id"));
                 category.setName(rs.getString("name"));
                 //调用产品实现类的方法获取产品集合
-                //List<Product> products=pdi.list(category);
-                //category.setProducts(products);
+                List<Product> products=pdi.list(category);
+                category.setProducts(products);
                 categories.add(category);
             }
         }catch (Exception e){

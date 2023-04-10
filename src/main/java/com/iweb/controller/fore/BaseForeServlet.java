@@ -22,6 +22,7 @@ public class BaseForeServlet extends HttpServlet {
     public ProductImageService productImageService=new ProductImageServiceImpl();
     public PropertyValueService propertyValueService=new PropertyValueServiceImpl();
     public OrderServiceImpl orderService=new OrderServiceImpl();
+    public ReviewService reviewService=new ReviewServiceImpl();
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {

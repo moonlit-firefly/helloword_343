@@ -92,8 +92,8 @@ public class ReviewDAOImpl implements EntityDAO<Review> {
                 review=new Review();
                 review.setId(id);
                 review.setContent(rs.getString("content"));
-               // review.setUser(udi.get(rs.getInt("uid")));
-               // review.setProduct(pdi.get(rs.getInt("pid")));
+                review.setUser(udi.get(rs.getInt("uid")));
+                review.setProduct(pdi.get(rs.getInt("pid")));
                 review.setCreateDate(rs.getDate("createDate"));
             }
         }catch (Exception e){
@@ -120,8 +120,8 @@ public class ReviewDAOImpl implements EntityDAO<Review> {
                 Review review=new Review();
                 review.setId(rs.getInt("id"));
                 review.setContent(rs.getString("content"));
-               // review.setUser(udi.get(rs.getInt("uid")));
-                //review.setProduct(pdi.get(rs.getInt("pid")));
+                review.setUser(udi.get(rs.getInt("uid")));
+                review.setProduct(pdi.get(rs.getInt("pid")));
                 review.setCreateDate(rs.getDate("createDate"));
                 reviews.add(review);
             }
@@ -154,13 +154,13 @@ public class ReviewDAOImpl implements EntityDAO<Review> {
             PreparedStatement ps=c.prepareStatement(sql)){
             ps.setInt(1,product.getId());
             ps.setInt(2,start);
-            ps.setInt(2,count);
+            ps.setInt(3,count);
             ResultSet rs=ps.executeQuery();
             while(rs.next()){
                 Review review=new Review();
                 review.setId(rs.getInt("id"));
                 review.setContent(rs.getString("content"));
-//                review.setUser(udi.get(rs.getInt("uid")));
+                review.setUser(udi.get(rs.getInt("uid")));
                 review.setProduct(product);
                 review.setCreateDate(rs.getDate("createDate"));
                 reviews.add(review);

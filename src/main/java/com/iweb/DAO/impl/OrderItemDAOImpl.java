@@ -32,6 +32,7 @@ public class OrderItemDAOImpl implements EntityDAO<OrderItem> {
             return true;
         }catch (Exception e){
             System.out.println("OrderItemImply订单详情"+bean.getId()+"add异常");
+            e.printStackTrace();
         }
         return false;
     }
@@ -155,7 +156,6 @@ public class OrderItemDAOImpl implements EntityDAO<OrderItem> {
             System.out.println("OrderItemDAOImply.list("+product.getName()+")出现异常");
             e.printStackTrace();
         }
-        System.out.println(orderItems);
         return orderItems;
     }
 }

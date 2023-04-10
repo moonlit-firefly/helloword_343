@@ -25,7 +25,7 @@
         <label for="password" >密码</label><br><br>
         <input type="password" class="password" id="password" name="password"/><br><br>
         <button type="submit" class="register">注册</button><br><br>
-        <a href="/admin_user_login">登陆</a><br><br>
+        <a href="/fore_user1_login">登陆</a><br><br>
     </div>
     <div class="col-md-3 column">
     </div>

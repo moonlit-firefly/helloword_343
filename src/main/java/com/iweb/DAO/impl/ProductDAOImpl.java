@@ -111,6 +111,16 @@ public class ProductDAOImpl implements EntityDAO<Product> {
                 product.setStock(rs.getInt("stock"));
                 product.setCategory(cdi.get(rs.getInt("cid")));
                 product.setCreateDate(rs.getDate("createDate"));
+                product.setReviewCount(rdi.list(product).size());
+                product.setSaleCount(oidi.list(product).size());
+                List<ProductImage> productImages=pidi.list(product);
+                product.setImages(productImages);
+                if(productImages.size()==0){
+                    //如果该产品没有照片，存入默认图片
+                    ProductImage productImage=new ProductImage();
+                    productImage.setUrl("http://39.106.106.39:8888/voice/20230404115600_0.png");
+                    product.getImages().add(productImage);
+                }
             }
         } catch (Exception e) {
             System.out.println("ProductDAOImpl.get(" + id + ")出现异常");
@@ -134,6 +144,7 @@ public class ProductDAOImpl implements EntityDAO<Product> {
         List<Product> products =list(category.getId());
         return products;
     }
+
     public List<Product> list(int cid) {
         List<Product> products = new ArrayList<>();
         String sql = "select * from product where cid=?";
@@ -153,8 +164,8 @@ public class ProductDAOImpl implements EntityDAO<Product> {
                 product.setCategory(cdi.get(cid));
                 product.setCreateDate(rs.getDate("createDate"));
                 //调用xxxximpl的方法计算评价数量,销量
-//                product.setReviewCount(rdi.list(product).size());
-//                product.setSaleCount(oidi.list(product).size());
+                product.setReviewCount(rdi.list(product).size());
+                product.setSaleCount(oidi.list(product).size());
                 List<ProductImage> productImages=pidi.list(product);
                 product.setImages(productImages);
                 if(productImages.size()==0){
@@ -167,6 +178,49 @@ public class ProductDAOImpl implements EntityDAO<Product> {
             }
         } catch (Exception e) {
             System.out.println("ProductDAOImpl.list(" + cid + ")出现异常");
+            e.printStackTrace();
+        }
+        return products;
+    }
+
+    /**模糊查询
+     * @param value 模糊查询值
+     * @return
+     */
+    public List<Product> list(String value) {
+        String name="%"+value+"%";
+        List<Product> products = new ArrayList<>();
+        String sql = "select * from product where name like ?";
+        try (Connection c = JDBCUtil.getConnection();
+             PreparedStatement ps = c.prepareStatement(sql)) {
+            ps.setString(1, name);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Product product = new Product();
+                product.setId(rs.getInt("id"));
+                product.setName(rs.getString("name"));
+                product.setSubTitle(rs.getString("subTitle"));
+                product.setOriginalPrice(rs.getFloat("originalPrice"));
+                product.setPromotePrice(rs.getFloat("promotePrice"));
+                product.setStock(rs.getInt("stock"));
+                //根据id获取完整的种类对象
+                product.setCategory(cdi.get(rs.getInt("cid")));
+                product.setCreateDate(rs.getDate("createDate"));
+                //调用xxxximpl的方法计算评价数量,销量
+                product.setReviewCount(rdi.list(product).size());
+                product.setSaleCount(oidi.list(product).size());
+                List<ProductImage> productImages=pidi.list(product);
+                product.setImages(productImages);
+                if(productImages.size()==0){
+                    //如果该产品没有照片，存入默认图片
+                    ProductImage productImage=new ProductImage();
+                    productImage.setUrl("http://39.106.106.39:8888/voice/20230404115600_0.png");
+                    product.getImages().add(productImage);
+                }
+                products.add(product);
+            }
+        } catch (Exception e) {
+            System.out.println("ProductDAOImpl.list(" + value + ")出现异常");
             e.printStackTrace();
         }
         return products;
@@ -193,9 +247,9 @@ public class ProductDAOImpl implements EntityDAO<Product> {
                 product.setCategory(cdi.get(rs.getInt("cid")));
                 product.setCreateDate(rs.getDate("createDate"));
                 //调用xxxximpl的方法计算评价数量,销量
-//                product.setReviewCount(rdi.list(product).size());
-//                product.setSaleCount(oidi.list(product).size());
-//                product.setImages(pidi.list(product));
+                product.setReviewCount(rdi.list(product).size());
+                product.setSaleCount(oidi.list(product).size());
+                product.setImages(pidi.list(product));
                 products.add(product);
             }
         }catch (Exception e){
