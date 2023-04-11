@@ -55,7 +55,7 @@ public class UserServlet extends BaseForeServlet {
     }
     public String exitLogin(HttpServletRequest request, HttpServletResponse response){
         //获取session 并且清除session中的用户信息
-        request.getSession().removeAttribute("user");
+        request.getSession().removeAttribute("buyUser");
         //重新回到用户登录界面
         return "@/page/fore/register/login.jsp";
     }

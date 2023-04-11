@@ -18,5 +18,4 @@ public class OrderItem {
     private Product product;
     private Order order;
     private User user;
-
 }

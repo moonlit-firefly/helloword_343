@@ -3,6 +3,7 @@ package com.iweb.DAO.impl;
 import com.iweb.DAO.EntityDAO;
 import com.iweb.entity.OrderItem;
 import com.iweb.entity.Product;
+import com.iweb.entity.User;
 import com.iweb.util.JDBCUtil;
 
 import java.sql.Connection;
@@ -92,9 +93,9 @@ public class OrderItemDAOImpl implements EntityDAO<OrderItem> {
                 orderItem.setId(id);
                 //调用方法充实对象属性
                 orderItem.setNumber(rs.getInt("number"));
-//                orderItem.setOrder(odi.get(rs.getInt("oid")));
-//                orderItem.setProduct(pdi.get(rs.getInt("pid")));
-//                orderItem.setUser(udi.get(rs.getInt("uid")));
+                orderItem.setOrder(odi.get(rs.getInt("oid")));
+                orderItem.setProduct(pdi.get(rs.getInt("pid")));
+                orderItem.setUser(udi.get(rs.getInt("uid")));
             }
         }catch (Exception e){
             System.out.println("OrderItemDAOImply.get("+id+")出现异常");
@@ -121,9 +122,9 @@ public class OrderItemDAOImpl implements EntityDAO<OrderItem> {
             while(rs.next()){
                 OrderItem orderItem=new OrderItem();
                 orderItem.setNumber(rs.getInt("number"));
-//                orderItem.setOrder(odi.get(rs.getInt("oid")));
-//                orderItem.setProduct(pdi.get(rs.getInt("pid")));
-//                orderItem.setUser(udi.get(rs.getInt("uid")));
+                orderItem.setOrder(odi.get(rs.getInt("oid")));
+                orderItem.setProduct(pdi.get(rs.getInt("pid")));
+                orderItem.setUser(udi.get(rs.getInt("uid")));
                 orderItems.add(orderItem);
             }
         }catch (Exception e){
@@ -147,13 +148,38 @@ public class OrderItemDAOImpl implements EntityDAO<OrderItem> {
             while(rs.next()){
                 OrderItem orderItem=new OrderItem();
                 orderItem.setNumber(rs.getInt("number"));
-                //orderItem.setOrder(odi.get(rs.getInt("oid")));
+                orderItem.setOrder(odi.get(rs.getInt("oid")));
                 orderItem.setProduct(product);
-                //orderItem.setUser(udi.get(rs.getInt("uid")));
+                orderItem.setUser(udi.get(rs.getInt("uid")));
                 orderItems.add(orderItem);
             }
         }catch (Exception e){
             System.out.println("OrderItemDAOImply.list("+product.getName()+")出现异常");
+            e.printStackTrace();
+        }
+        return orderItems;
+    }
+
+    /**用户订单详情集合
+     * @param user 用户
+     * @return
+     */
+    public List<OrderItem> list(User user) {
+        List<OrderItem> orderItems=new ArrayList<>();
+        String sql="select * from orderitem where uid=?";
+        try(Connection c= JDBCUtil.getConnection();
+            PreparedStatement ps=c.prepareStatement(sql)){
+            ps.setInt(1,user.getId());
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                OrderItem orderItem=new OrderItem();
+                orderItem.setNumber(rs.getInt("number"));
+                orderItem.setOrder(odi.get(rs.getInt("oid")));
+                orderItem.setProduct(pdi.get(rs.getInt("pid")));
+                orderItem.setUser(user);
+                orderItems.add(orderItem);
+            }
+        }catch (Exception e){
             e.printStackTrace();
         }
         return orderItems;

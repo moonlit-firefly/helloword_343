@@ -19,13 +19,20 @@
 <div class="container">
     <div class="row clearfix">
         <div class="col-md-4 column">
-            <div class="alert alert-success alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <h4>
-                    欢迎!
-                </h4>尊贵的用户:${user.name}
-                <a href="fore_user1_exitLogin" class="alert-link">退出登录</a>
-            </div>
+            <h3 class="text-info">
+                <c:if test="${empty buyUser.name}">
+                    <a href="/page/fore/register/login.jsp">
+                        <button type="button">登录</button>
+                    </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="/page/fore/register/register.jsp">
+                        <button type="button">注册</button>
+                    </a>
+                </c:if>
+                <c:if test="${buyUser.name !=null}">
+                    欢迎您！<a href="/page/fore/user/editUser.jsp">${buyUser.name}</a> 。
+                    &nbsp;&nbsp;<a href="/fore_user1_exitLogin">退出登录</a>
+                </c:if>
+            </h3>
         </div>
         <div class="col-md-1 column">
             <a href="/fore_productView_listByPrice?id=${ps.get(0).category.id}">

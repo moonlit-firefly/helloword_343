@@ -42,7 +42,7 @@
         </div>
         <div class="col-md-3 column">
             <h3 class="text-info">
-                <c:if test="${empty user.name}">
+                <c:if test="${empty buyUser.name}">
                     <a href="/page/fore/register/login.jsp">
                         <button type="button">登录</button>
                     </a>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -50,8 +50,9 @@
                         <button type="button">注册</button>
                     </a>
                 </c:if>
-                <c:if test="${user.name !=null}">
-                    欢迎您！${user.name}。
+                <c:if test="${buyUser.name !=null}">
+                    欢迎您！<a href="/page/fore/user/editUser.jsp">${buyUser.name}</a> 。
+                    &nbsp;&nbsp;<a href="/fore_user1_exitLogin">退出登录</a>
                 </c:if>
             </h3>
         </div>

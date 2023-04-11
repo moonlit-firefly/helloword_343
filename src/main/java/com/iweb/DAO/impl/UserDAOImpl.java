@@ -101,6 +101,7 @@ public class UserDAOImpl implements EntityDAO<User> {
             ResultSet rs=ps.executeQuery();
             if(rs.next()){
                 user1 = new User();
+                user.setId(rs.getInt("id"));
                 user1.setId(rs.getInt("id"));
                 user1.setName(rs.getString("name"));
                 user1.setPassword(rs.getString("password"));

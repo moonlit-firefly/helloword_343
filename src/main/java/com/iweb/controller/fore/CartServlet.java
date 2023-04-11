@@ -14,4 +14,11 @@ public class CartServlet extends BaseForeServlet {
 
         return "@success";
     }
+    public String delete(HttpServletRequest req, HttpServletResponse resp){
+        //获取ajax请求中所携带的参数id
+        Integer id=Integer.parseInt(req.getParameter("id"));
+        orderItemService.delete(id);
+        //返回响应字符串
+        return "%success";
+    }
 }
